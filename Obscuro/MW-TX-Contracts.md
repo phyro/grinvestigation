@@ -1,9 +1,12 @@
-# MW Transaction Contracts
+# WIP: MW Transaction Contracts
 If you have not read the [ObscuroJoin](./ObscuroJoin.md) part yet, you should go do that before reading this one as this one shows a generalization of the previous patterns. After seeing ObscuroJoin we can quickly spot that this is just one of the many ways to perform specific transaction contracts. So let's go through transaction contracts that we have encountered so far:
 1. **ObscuroTX** - prevents the leaking of inputs and outputs from Alice to Bob
 2. **ObscuroDance** - allows buying inputs and outputs from another peer in a secure way for both parties.
 3. **ObscuroJoin** - combines ObscuroTX and ObscuroDance contracts to form a transaction that gets obfuscated before it gets seen by anyone.
 
+The main idea was is to create an atomic transaction that is composed of multiple aggregated transactions. The sender can decide to send the whole transaction or a subset but each party in the transaction can make
+themselves safe by creating intermediate steps that disincentivize bad behaviour like was done in ObscuroDance pattern. In the end, the sender is incentivized to publish either nothing or the whole set of transactions
+as a single transaction making it an atomic operation. Because we are building a UTXO sequence, if they depend we can make it conditional e.g. TX2 can happen if and only if TX1 happened.
 There are many more contracts that are useful and possible to do. One thing we learned from ObscuroJoin is that we can compose existing contracts together to form another contract.
 
 ## Some other possible contracts
@@ -31,4 +34,4 @@ This seems to be a way to do some sort of conditional computation that happens o
 Description of contracts a client supportsNow nodes need to find out which contracts a Grin client supports. Remember that not all of them even have a private key to sign anything. [OpenRPC](https://open-rpc.org/) could be used to solve the problem of finding the contract functionality a client supports by calling the `rpc`.discover to the node which returns its interface.
 
 ## What about security?
-A neat property here is that we can create be as creative as we want and the Grin chain will still be safe because for every transaction/block we still need to prove that for a given `Outputs-Inputs=Excess` we know an `x` such that `x*G=Excess`. This simple computational model can't hurt the chain as far as I can tell (apart from the kernel waste it can create but this could likely go away if Grin switches to BLS signatures). While this might seem similar to the Lightning Network and hence like a Layer 2 solution, it is really still happening on Layer 1 in the end, it is just done 'offline' and a lot of information can get pruned before it even gets to the chain.
+A neat property here is that we can be as creative as we want and the Grin chain will still be safe because for every transaction/block we still need to prove that for a given `Outputs-Inputs=Excess` we know an `x` such that `x*G=Excess`. This simple computational model can't hurt the chain as far as I can tell (apart from the kernel waste it can create but this could likely go away if Grin switches to BLS signatures). While this might seem similar to the Lightning Network and hence like a Layer 2 solution, it is really still happening on Layer 1 in the end, it is just done 'offline' and a lot of information can get pruned before it even gets to the chain.
