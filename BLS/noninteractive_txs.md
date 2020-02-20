@@ -38,5 +38,4 @@ Is this possible and what could one gain from doing it?
 # Additional resources
 
 There's been a discussion of BLS signature by Gandalf the Pink on [a github issue](https://github.com/mimblewimble/grin/issues/2504#issuecomment-467446197) where he attached a
-[document](https://github.com/mimblewimble/grin/files/2905763/MWpp.pdf) which might have some mistakes, but has some interesting ideas inside. The idea above was partly influenced
-by the ideas from that paper.
+[document](https://github.com/mimblewimble/grin/files/2905763/MWpp.pdf) which might have some mistakes, but has some interesting ideas inside.
