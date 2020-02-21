@@ -1,6 +1,6 @@
 # Grinvestigation
 
-This serves as a collection of ideas that might work on Mimblewimble/Grin.
+This is a brain dump of ideas which more likely than not contain flaws. Nothing has been proven correct or rigorously reviewed.
 
 ## Table of contents
 

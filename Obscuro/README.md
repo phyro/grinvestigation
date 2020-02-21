@@ -6,6 +6,5 @@ that if it is possible to aggregate all the kernels into a single one, these sch
 1. [ObscuroTX](./ObscuroTX.md)
 2. [ObscuroDance](./ObscuroDance.md)
 3. [ObscuroJoin](./ObscuroJoin.md)
-4. [MW-TX-Contract](./MW-TX-Contracts.md)
 
 Hopefully there can be many more interesting flows we can do or ideas we can join.
