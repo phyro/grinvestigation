@@ -9,6 +9,8 @@ to additional data.
 
 ## What it's trying to solve
 
+This is not about commiting arbitrary data on the chain. This should only be considered when the protocol needs
+more data than a single Pedersen commitment. Commiting to arbitrary data can be solved with [timestamping](timestamping.md).
 Let's say that the protocol rules requires more than just a single Pedersen commitment for successful validation. For example the Noninteractive
 approach that David showed requires some additional fields to be a part of the UTXO. The data commitment approach mentioned above
 is one way to commit to additonal data that's needed to validate the UTXO and uses Bulletproofs to achieve this.
@@ -26,12 +28,6 @@ hard because one would need to create a different `data` which would produce the
 wants to spend the commitment they need to know the `r + hash(P1 | data)` and since the `P1` and `data` is public, everyone already knows the `hash(P1 | data)` part so the only thing an attacker would need to know is `r` which is the same requirement as in the current implementation.
 
 This also means that the inflation check formula `sum(outputs) - sum(inputs)` needs to use `P2` commitments.
-
-So we end with a commitment implication chain:
-
-`kernel => (r+hash(data))*G => UTXO` and hence `kernel => UTXO`
-
-where `=>` reads as `commits to`.
 
 This does not use any more data than the idea that injects a hash into a Bulletproof. The benefit as mentioned above is that it does
 not depend on the range proof implementation, but it does require more changes due to the change in the kernel computation which is the
