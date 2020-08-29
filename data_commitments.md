@@ -1,3 +1,9 @@
+
+**NOTE: This scheme is FLAWED and can be attacked. The attacker can swap the `data` for arbitrary `data'`. First they need to compute the
+hashes `orig=hash(P1|data); fake=hash(P1|data')`. They can then swap the original data with the fake one and adjust the kernel offset by
+the difference in hash computations. Note that even if kernel offsets did not exist, the same attack could be done by adding and signing
+a new kernel that contains the hash difference.**
+
 # A way to commit to additional UTXO data in the scope of a MW transaction
 
 Let's say we want to commit to more data than a single Pedersen commitment `v*H + r*G`. David Burkett introduced an idea
