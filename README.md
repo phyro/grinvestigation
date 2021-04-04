@@ -11,6 +11,8 @@ This is a brain dump of ideas which more likely than not contain flaws. Nothing 
 5. [Noninteractive transaction proposal](https://github.com/DavidBurkett/lips/blob/master/lip-0004.mediawiki)
 6. [Coinbase outputs as Transaction outputs](https://forum.grin.mw/t/coinbase-outputs-as-transaction-outputs/7441)
 7. (Re)play attacks
+    - [Unique kernels without transaction expiry](https://forum.grin.mw/t/unique-kernels-without-transaction-expiry/7576)
+    - [Efficient solution to verify kernel uniqueness + better absolute timelocks](https://forum.grin.mw/t/efficient-solution-to-verify-kernel-uniqueness-better-absolute-timelocks/7526)
     - [PayJoins for Replay Protection](https://forum.grin.mw/t/payjoins-for-replay-protection/7544)
     - [Replay RFC that was closed in favor of smaller RFCs](https://github.com/mimblewimble/grin-rfcs/pull/60)
         - [Early Payment Proofs](https://github.com/mimblewimble/grin-rfcs/pull/70)
