@@ -7,4 +7,4 @@ This could potentially allow Grin to substantially reduce the size of the kernel
 If this is possible, it would be worth researching also if we could move the remaining kernel data to the UTXO itself. If we managed to do this, it might allows us to have the "simpler
 test" version of verification test which is described under (3) in [this BLS research](https://crypto.stanford.edu/~dabo/pubs/papers/BLSmultisig.html#mjx-eqn-eqaggsame) from the BLS authors.
 On top of that, it would bring more privacy because it would not be possible to tell how many transactions were aggregated (note that even with public key and signature aggregation, the number
-of transactions could be derived from the number of messages that have been signed). A side effect of it would also be that one could us [Obscuro](./Obscuro/README.md) patterns in a bloat-free way.
+of transactions could be derived from the number of messages that have been signed). A side effect of it would also be that one could use [Obscuro](./Obscuro/README.md) patterns in a bloat-free way.
