@@ -34,3 +34,7 @@ This is a brain dump of ideas which more likely than not contain flaws. Nothing 
 1. [Nimble stack](https://forum.grin.mw/t/nimble-grin-stack/7503)
 2. [Default daily aggregator for privacy and payjoins for scaling](https://forum.grin.mw/t/one-of-the-possible-grin-paths/8364)
 
+## Miscellaneous
+
+1. [Chain reorgs and graph merging](chain_reorgs.md)
+
