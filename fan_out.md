@@ -23,6 +23,8 @@ What we are doing is creating a forward noise in the transaction graph. They may
 
 The downside is clearly more throughput due to more outputs, but every decoy output will bring more privacy to some other random transaction! It's not really a clear downside, more like a tradeoff where a user gains graph obfuscation by obfuscating the graph of others a bit.
 
+_NOTE: We'd need to have transactions that overpay some fee in order to be able to include the inputs._
+
 ## Network forward noise
 
 If many users did this, it becomes a graph noise generator where your transaction can get inputs added by other nodes so the benefit for the transaction extends to many more people (including yourself) when they get added input decoys to their transaction.
