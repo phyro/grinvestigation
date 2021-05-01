@@ -21,9 +21,7 @@ of the 11 outputs. Again, suppose Alice sends some money to Bob in a 11-2 transa
 lands on the chain. The way Monero works is that everyone else will now automatically start using both Alice's and Bob's
 outputs that were created meaning that a lot of new transactions will use these two outputs in their ring. Now, when
 Alice reorgs the chain to double-spend her output that was spent in the 11-2 transaction she sent to Bob, this also
-invalidates every single transaction that used either of the outputs that were created _AND_ everything that used the
-outputs that were created in these transactions in their ring (and so on and so on...). The damage is huge because the
-graphs start overlapping.
+invalidates every single transaction that directly used either of the two outputs in their ring _AND_ everything that used the outputs that were created in these transactions in their ring (and so on and so on...). The damage is huge because people automatically start using the double-spent input as one of the inputs in their ring which makes the graphs merge. The dependency from which the subgraphs were built are all of a sudden no longer there which makes the subgraphs disappear.
 
 
 ## Grin
