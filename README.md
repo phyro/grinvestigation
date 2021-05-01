@@ -36,5 +36,8 @@ This is a brain dump of ideas which more likely than not contain flaws. Nothing 
 
 ## Miscellaneous
 
-1. [Chain reorgs and graph merging](chain_reorgs.md)
+1. [What is Grin](https://phyro.github.io/what-is-grin/)
+2. [Why Grin](why_grin.md)
+3. [Transaction interactivity levels](interactivity_levels.md)
+4. [Chain reorgs and graph merging](chain_reorgs.md)
 
