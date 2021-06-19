@@ -20,10 +20,24 @@ Usually the signatures sign a message in which case Alice computes `e = H(R | M)
 
 ## Schnorr multi-sig
 
-What if Alice owned public key `P_a = p_a*G` and Bob owned public key `P_b = p_b*G` and they wanted to create a signature where they both sign a message `M`? They could both construct a signature on their own and we'd have 2 signatures for the same message. We can do better and produce a single signature which proves both parties signed the message. We need to construct a proof that we know the private key for curve point `P = P_a + P_b`. We start off with Alice doing the exact same thing as she did in regular signature which is to pick a random nonce `R_a = r_a*G`, but then she asks Bob for his public nonce `R_b`. Alice can then compute `e = H(R_a | R_b | M)` and `s_a = e*p_a + r_a`. Note that we added a suffix `_a` to the public and private keys created by Alice and similarly suffix `_b` to those created by Bob. She now sends `<R_a + R_b, s_a>` to Bob. This signature is not valid because the equation `P = s*G` doesn't hold for `P = P_a + P_b`. Let's take a look at what is missing from our signature
+What if Alice owned public key `P_a = p_a*G` and Bob owned public key `P_b = p_b*G` and they wanted to create a signature where they both sign a message `M`? They could both construct a signature on their own and we'd have 2 signatures for the same message. We can do better and produce a single signature which proves both parties signed the message. We need to construct a proof that we know the private key for curve point `P = P_a + P_b`. We start off with Alice doing the exact same thing as she did in regular signature which is to pick a random nonce `R_a = r_a*G`, but then she asks Bob for his public nonce `R_b`. Alice can then compute `e = H(R_a + R_b | M)` and `s_a = e*p_a + r_a`. Note that we added a suffix `_a` to the public and private keys created by Alice and similarly suffix `_b` to those created by Bob. She now sends `<R_a + R_b, s_a>` to Bob. This signature is not valid because the equation `P = s*G` doesn't hold for `P = P_a + P_b`. Let's take a look at what is missing from our signature
 ```
    P_a + P_b + R_a + R_b = e*(p_a+p_b) + r_a + r_b
 => P_a + P_b + R_a + R_b = e*p_a + e*p_b + r_a + r_b
 ```
 
 We know that Alice produced `s_a = e*p_a + r_a` so we only need to add `e*p_b + r_b` to `s_a` to produce a valid signature. Bob knows the values we lack so he can compute `s_b = e*p_b + r_b` and compute the final signature as `<R_a + R_b, s_a + s_b>`. This pair is a valid multisignature of Alice and Bob for message `M`.
+
+
+## More funny bussiness
+
+Commiting to `H(R | M)` leaves some creativity for some people. An attacker could convince someone they know the private key for point `P`. The attacker first chooses message `M` and some curve point `R`, computes the challenge `e = H(R | M)` and then choosing `P = -e^(-1)*R + u*G`. Now when we compute the `e*P + R` we get
+```
+   e*(-e^(-1)*R) + u*G + R
+=> -R + u*G + R
+=> u*G
+```
+note that we only need to know the private key `u`. We don't need to know the private key of either P or R!
+We can avoid this attack by committing also to `P` in the hash `H(R | M | P)`. Now we can't pick `P` after the message because the message commits to it.
+
+Thanks to @kurt for explaining the attack.
