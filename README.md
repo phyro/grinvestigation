@@ -40,4 +40,4 @@ This is a brain dump of ideas which more likely than not contain flaws. Nothing 
 2. [Why Grin](why_grin.md)
 3. [Transaction interactivity levels](interactivity_levels.md)
 4. [Chain reorgs and graph merging](chain_reorgs.md)
-
+5. [Schnorr signatures](schnorr.md)
