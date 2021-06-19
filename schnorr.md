@@ -28,6 +28,41 @@ What if Alice owned public key `P_a = p_a*G` and Bob owned public key `P_b = p_b
 
 We know that Alice produced `s_a = e*p_a + r_a` so we only need to add `e*p_b + r_b` to `s_a` to produce a valid signature. Bob knows the values we lack so he can compute `s_b = e*p_b + r_b` and compute the final signature as `<R_a + R_b, s_a + s_b>`. This pair is a valid multisignature of Alice and Bob for message `M`.
 
+Note that the multisig is indistinguishable from a single-sig. They are both just a pair `<R, s>`.
+
+
+## Batch verification
+
+By now we know that we can validate Schnorr signature by checking if `e*P + R = s*G`. Consider we have 100 signatures of this form
+```
+e1*P1 + R1 = s1*G
+e2*P2 + R2 = s2*G
+...
+e100*P100 + R100 = s100*G
+```
+
+In theory, we could sum up all the left hand side and all the right hand side and check that
+```
+e1*P1 + R1 + e2*P2 + R2 + ... + e100*P100 + R100 = (s1 + s2 + ... + s100)*G
+```
+and if it is valid it should still hold. However, this is vulnerable to attacks now because signatures can help hide each other's flaws! An example of this would be to construct 2 signatures
+```
+e1*P1 + R1 + e2*P2 + R2 = (s1 + s2)*G
+```
+an attacker can now pick as `P1` a point they don't know the private key for and then set `R2 = -e1*P1 + u*G`. This would expand to
+```
+   e1*P1 + R1 + e2*P2 -e1*P1 + u*G = (s1 + s2)*G
+=> R1 + e2*P2 +u*G = (s1 + s2)*G
+```
+and they wouldn't need to know the private key of `P1` to validate these two in batch! To solve this we can [pick a random number for every signature equation](https://github.com/mimblewimble/secp256k1-zkp/blob/master/src/modules/schnorrsig/main_impl.h#L301-L304) which prevents us from knowing the relation between the two signatures and makes the above attack impossible. So instead of summing the original equations, we generate a random number for every equation and multiply both sides by it. Then we can sum them up and check that the equality holds.
+
+Bonus: As an example, we can show how this could lead to inflation bug in Mimblewimble if we are not careful. The public key we sign is a Pedersen commitment which should have a form `0*H + x*G`. However, we could make it inflate e.g. `10*H + x*G` and then we could construct two signatures
+```
+e1*(10*H + x*G) + R1 = s1*G
+e2*(0*H + y*G) + (-e1*(10*H) + y*G) = s2*G
+```
+Summing these up would make the inflated `10*H` disappear and I think we could produce a valid signature.
+
 
 ## More funny bussiness
 
