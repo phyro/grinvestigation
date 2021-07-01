@@ -1,6 +1,8 @@
 # Schnorr signatures
 
-**NOTE: This was not checked by a cryptographer so it likely contains flaws!**
+<span style="color:red;font-weight:bold;">NOTE: The cryptography below is INSECURE so it's not meant to be used!</span>
+
+<span style="color:green;font-weight:bold;">NOTE: This is only meant as a guide towards learning about some of the basics of Schnorr signatures through some examples of how they can be attacked. We do NOT get to a secure signature scheme descriptions in the end.</span>
 
 ## The problem
 
@@ -22,6 +24,8 @@ Usually the signatures sign a message in which case Alice computes `e = H(R | M)
 
 ## Schnorr multi-sig
 
+<span style="color:red;font-weight:bold;">NOTE: Insecure!</span>
+
 What if Alice owned public key `P_a = p_a*G` and Bob owned public key `P_b = p_b*G` and they wanted to create a signature where they both sign a message `M`? They could both construct a signature on their own and we'd have 2 signatures for the same message. We can do better and produce a single signature which proves both parties signed the message. We need to construct a proof that we know the private key for curve point `P = P_a + P_b`. We start off with Alice doing the exact same thing as she did in regular signature which is to pick a random nonce `R_a = r_a*G`, but then she asks Bob for his public nonce `R_b`. Alice can then compute `e = H(R_a + R_b | M)` and `s_a = e*p_a + r_a`. Note that we added a suffix `_a` to the public and private keys created by Alice and similarly suffix `_b` to those created by Bob. She now sends `<R_a + R_b, s_a>` to Bob. This signature is not valid because the equation `P = s*G` doesn't hold for `P = P_a + P_b`. Let's take a look at what is missing from our signature
 ```
    P_a + P_b + R_a + R_b = e*(p_a+p_b) + r_a + r_b
@@ -34,6 +38,8 @@ Note that the multisig is indistinguishable from a single-sig. They are both jus
 
 
 ## Batch verification
+
+<span style="color:red;font-weight:bold;">NOTE: Do not use in production!</span>
 
 By now we know that we can validate Schnorr signature by checking if `e*P + R = s*G`. Consider we have 100 signatures of this form
 ```
