@@ -22,6 +22,7 @@ This is a brain dump of ideas which more likely than not contain flaws. Nothing 
 7. [Output injection](https://gist.github.com/phyro/3335b1ad8d61892e906c1cf9aa1d4e27) - [Forum thread](https://forum.grin.mw/t/grin-transactions-user-interactivity/7738)
 8. [2-step donations without payment proofs](https://gist.github.com/phyro/6a3ba09f4a3fb29786c760f0172c7faf)
 9. [Constant size full node](constant_size_full_node.md)
+10. [Bidirectional payment proofs](bidirectional_paymentproofs.md)
 
 ## Graph obfuscation
 
