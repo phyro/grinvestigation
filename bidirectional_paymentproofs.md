@@ -26,6 +26,9 @@ In order for both parties to end up with a payment proof, we likely want to prod
 Regardless of the flow, at step 2 we have both the sender's public nonce <code>R<sub>s</sub></code> and the receiver's public nonce <code>R<sub>r</sub></code>. This allows us to do the following.
 
 #### Commitment
+
+A transaction commits to a message which is publicly verified as part of a signature verification. Anyone can compute the Schnorr challenge `e` which is used to scale `P` in `R + e*P = s*G`. In order to commit to a payment proof, we commit to another (secret) message by scaling `R` part as well, but in a way that is invisible to the signature verifiers. This way, we don't change the Schnorr verification formula which means we don't add a scalar multiplication operation for the verifiers while still being able to prove the commitment.
+
 Suppose our payment proof has the following fields:
 ```
 type
