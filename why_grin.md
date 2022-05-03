@@ -10,11 +10,11 @@ Below is a comparison of Grin/Mimblewimble with some other technologies. This is
 | Hides amounts | X | ✓ | ✓ |
 | Hides addresses | X | ✓ | ✓ |
 | Hides the transaction graph (untraceability) | X | ✓(mostly) | X |
-| Possible constant-size full node | ✓ | X | ✓ |
+| Possible constant-size full node | ✓ | X | X |
 | Scriptless scripts | ✓ | X | ✓ |
-| Emission curve | exponential | exponential + linear | linear </br>(1 per second) |
+| Emission curve | exponential | exponential + linear | linear (1 per second) |
 | Total supply | 21M | ∞ | ∞ |
-| Soft total supply </br>(reached when yearly inflation rate <1%) | 19.7M | 18M | 3150M |
+| Soft total supply (reached when yearly inflation rate <1%) | 19.7M | 18M | 3150M |
 | Time to reach soft total supply | 16 years | 8 years | 100 years |
 | Fraction of soft total supply emitted in first year alone | 13.3% | 40% | 1% |
 | Block time | 10 minutes | 2 minutes | 1 minute |
@@ -40,7 +40,7 @@ Below is a comparison of Grin/Mimblewimble with some other technologies. This is
 4. **Hides amounts** - Both Grin and Monero use Confidential Transactions to blind the amounts.
 5. **Hides addresses** - Grin doesn't have addresses. The outputs are just a random point on the elliptic curve and the secret to spending this output is encoded in that curve point. Monero uses stealth addresses.
 6. **Hides the transaction graph (untraceability)** - Bitcoin and Grin don't obfuscate the transaction graph today. Monero adds some decoys to the input side of the transaction making the links less clear, but it's not a perfect solution. Grin may have some options to improve the transaction graph obfuscation through its ability to noninteractively aggregate transactions, but the options need to be researched.
-7. **Possible constant-size full node** - Bitcoin node can prune historical data and still fully validate. This leaves it only with the UTXO set being needed to fully validate a new block, but even this can be reduced to a constant with Utreexo. Grin has a very similar ability to prune everything away and get a constant-size full node with the existing accumulators it uses. It's unclear whether Monero can achieve this, there have been no solutions for that AFAIK.
+7. **Possible constant-size full node** - Bitcoin node can prune historical data and still fully validate. This leaves it only with the UTXO set being needed to fully validate a new block, but even this can be reduced to a constant with Utreexo. While Grin can prune the historical transactions and has the functionality of Utreexo already available, it still can't fully validate a new block with only inclusion proofs because Grin has a consensus rule that no duplicate outputs can exist which would require an exclusion proof as well - and these are not available with accumulators Grin has. It's unclear whether Monero can achieve this, there have been no solutions for that AFAIK.
 8. **Scriptless scripts** - Grin supports some scripting through scriptless-scripts. Bitcoin has a more expressive scripting language Bitcoin script - this comes with a lot of additional complexity though.
 9. **Emission curve** - Grin and Monero have a linear emission model which may be more sustainable in the long run.
 10. **Total supply** - Bitcoin has a hardcap of 21 million Bitcoins while both Monero and Grin have an uncapped supply.
