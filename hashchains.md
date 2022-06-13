@@ -70,6 +70,11 @@ There was no known solution to this problem at the time.
 
 A screenshot of the discussion with highlights is available [here](https://i.imgur.com/7aIlYvF.png).
 
+Let's summarize some of the properties of Red's hypothetical system:
+- a block is a a set of commitments
+- transaction data (address, amount) and links between the commitments in a block would ideally not be visible to a new node
+- spent commitments can be identified by their previous appearance which makes it possible to construct the UTXO set regardless when you joined the network
+
 <hr/>
 
 The main thing Red wanted to achieve was to modify the construction such that a block holds only information about commitments rather than all transaction data. This would have brought some interesting properties. Since commitments are by definition random, they can't leak information about their links in a block. At least not without additional data. Having only commitments would also no longer reveal information about amounts or owners/addresses to a new node. We can see why Satoshi thought this would've been a better implementation of Bitcoin. There was a big problem with the idea Red described which Satoshi described as
