@@ -42,4 +42,4 @@ This is a brain dump of ideas which more likely than not contain flaws. Nothing 
 3. [Transaction interactivity levels](interactivity_levels.md)
 4. [Chain reorgs and graph merging](chain_reorgs.md)
 5. [Schnorr signatures](schnorr.md)
-6. [Satoshi's response to a Commitment-based construction](hashchains.md)
+6. [Satoshi's response to a Commitment-based construction](https://phyro.github.io/what-is-grin/commitment_chains.html)
