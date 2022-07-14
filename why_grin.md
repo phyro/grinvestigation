@@ -17,6 +17,7 @@ Below is a comparison of Grin/Mimblewimble with some other technologies. This is
 | Soft total supply (reached when yearly inflation rate <1%) | 19.7M | 18M | 3150M |
 | Time to reach soft total supply | 16 years | 8 years | 100 years |
 | Fraction of soft total supply emitted in first year alone | 13.3% | 40% | 1% |
+| When is the average coin emitted (average [soft emission](https://john-tromp.medium.com/a-case-for-using-soft-total-supply-1169a188d153) time) | 4.9 years | 1.8 years | 50 years |
 | Block time | 10 minutes | 2 minutes | 1 minute |
 | PoW complexity | simple | very complex | simple |
 | PoW verification | trivial | very expensive | trivial |
@@ -47,18 +48,19 @@ Below is a comparison of Grin/Mimblewimble with some other technologies. This is
 11. **Soft total supply (reached when yearly inflation rate <1%)** - Shows total supply points at which the soft total supply is reached.
 12. **Time to reach soft total supply** - Both Bitcoin and Monero reach the soft total supply in the first two decades while it takes 100 years for Grin to reach it.
 13. **Fraction of soft total supply emitted in first year alone** - Grin only emitted 1% of the [soft total supply](https://john-tromp.medium.com/a-case-for-using-soft-total-supply-1169a188d153) in its first year and will continue to add a percent per year until we reach 100%. This may serve as one possible measure of wealth concentration. 
-14. **Block time** - Not much to add here.
-15. **PoW complexity** - Grin uses Cuckoo cycle which is simpler than computing a sha256 used by Bitcoin and much simpler than RandomX which is what Monero uses.
-16. **Cheaply verifiable PoW** - The solutions of both Cuckoo cycle and sha256 are much simpler to verify compared to a solution of a RandomX PoW.
-17. **ASIC resistant PoW** - Grin and Bitcoin have an ASIC friendly PoW while Monero's RandomX is ASIC resistant.
-18. **Protocol complexity** - Out of all three, Grin has the simplest protocol design.
-19. **Codebase** - Both Bitcoin and Grin were written from scratch. Monero was forked from a project called Bytecoin. Monero [inherited a crippled miner](https://web.archive.org/web/20220606220320/https://da-data.blogspot.com/2014/08/minting-money-with-monero-and-cpu.html) that gave some miners a huge advantage for months.
-20. **Multiple implementations** - Grin has two implementations, the Rust node and the Grin++ which is written in C++. This is very useful for catching bugs when a network split happens. Monero has a single node implementation.
-21. **Formal process for protocol improvements** - Changes to the Bitcoin protocol are proposed through BIPs. Grin has a similar formal way of proposing changes through RFCs. I'm not sure Monero has a formal process for the changes.
-22. **(relative) time locks (for Layer 2)** - Grin and Bitcoin have an option to express bidirectional payment channels. There is no known way to achieve this on Monero.
-23. **Possible atomic swaps** - It's possible to do these on all three.
-24. **Full wallet control** - In a NITX (noninteractive transactions) setting, the receiver can only control which outputs are spent, but has no control over which are received. This opens a lot of unwanted state injections like dusting attacks or “dark/illegal” outputs to the wallet. Controlling the incoming traffic is easier to reason, easier to regulate and eliminates these issues completely at the cost of a click on “Confirm” and a little wait time for the other party. This is not possible when there is an option to receive an output you have not signed.
-25. **Payment proofs (value commitment)** - The sender can prove the value was sent to the receiver by showing the payment proof.
-26. **Stronger payment proofs (content commitment)** - ITX allows for a more powerful version of payment proofs which allows the transaction parties to commit to an arbitrary statement/document by signing the hash of the document. Signing documents requires their review prior to signing which makes it only possible in the ITX setting. An example of such a document could be an actual invoice from a store. It may be possible to do that on Bitcoin as well, but I'm not aware of any approaches.
-27. **Non-interactive transactions** - Grin does not support non-interactive transactions. This makes it a bit more challenging to make donations or send to an offline wallet.
-28. **Doesn't require scanning the chain upon opening the wallet** - We usually need to scan the outputs to see if they belong to us. If our wallet created the output and then sent it off to the chain, then we never require scanning whether the outputs on the chain are ours (unless we reuse the seed on a different device). We can simply check if the outputs we created exist on the chain.
+14. **When is the average coin emitted (average soft emission time)** - Calculations for Bitcoin and Monero are too complex to describe here. On the other hand, it's relatively simple to compute this for Grin and we could intuitively guess the answer is 50 years because of the linearity of the emission function.
+15. **Block time** - Not much to add here.
+16. **PoW complexity** - Grin uses Cuckoo cycle which is simpler than computing a sha256 used by Bitcoin and much simpler than RandomX which is what Monero uses.
+17. **Cheaply verifiable PoW** - The solutions of both Cuckoo cycle and sha256 are much simpler to verify compared to a solution of a RandomX PoW.
+18. **ASIC resistant PoW** - Grin and Bitcoin have an ASIC friendly PoW while Monero's RandomX is ASIC resistant.
+19. **Protocol complexity** - Out of all three, Grin has the simplest protocol design.
+20. **Codebase** - Both Bitcoin and Grin were written from scratch. Monero was forked from a project called Bytecoin. Monero [inherited a crippled miner](https://web.archive.org/web/20220606220320/https://da-data.blogspot.com/2014/08/minting-money-with-monero-and-cpu.html) that gave some miners a huge advantage for months.
+21. **Multiple implementations** - Grin has two implementations, the Rust node and the Grin++ which is written in C++. This is very useful for catching bugs when a network split happens. Monero has a single node implementation.
+22. **Formal process for protocol improvements** - Changes to the Bitcoin protocol are proposed through BIPs. Grin has a similar formal way of proposing changes through RFCs. I'm not sure Monero has a formal process for the changes.
+23. **(relative) time locks (for Layer 2)** - Grin and Bitcoin have an option to express bidirectional payment channels. There is no known way to achieve this on Monero.
+24. **Possible atomic swaps** - It's possible to do these on all three.
+25. **Full wallet control** - In a NITX (noninteractive transactions) setting, the receiver can only control which outputs are spent, but has no control over which are received. This opens a lot of unwanted state injections like dusting attacks or “dark/illegal” outputs to the wallet. Controlling the incoming traffic is easier to reason, easier to regulate and eliminates these issues completely at the cost of a click on “Confirm” and a little wait time for the other party. This is not possible when there is an option to receive an output you have not signed.
+26. **Payment proofs (value commitment)** - The sender can prove the value was sent to the receiver by showing the payment proof.
+27. **Stronger payment proofs (content commitment)** - ITX allows for a more powerful version of payment proofs which allows the transaction parties to commit to an arbitrary statement/document by signing the hash of the document. Signing documents requires their review prior to signing which makes it only possible in the ITX setting. An example of such a document could be an actual invoice from a store. It may be possible to do that on Bitcoin as well, but I'm not aware of any approaches.
+28. **Non-interactive transactions** - Grin does not support non-interactive transactions. This makes it a bit more challenging to make donations or send to an offline wallet.
+29. **Doesn't require scanning the chain upon opening the wallet** - We usually need to scan the outputs to see if they belong to us. If our wallet created the output and then sent it off to the chain, then we never require scanning whether the outputs on the chain are ours (unless we reuse the seed on a different device). We can simply check if the outputs we created exist on the chain.
