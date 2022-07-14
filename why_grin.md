@@ -16,8 +16,8 @@ Below is a comparison of Grin/Mimblewimble with some other technologies. This is
 | Total supply | 21M | ∞ | ∞ |
 | Soft total supply (reached when yearly inflation rate <1%) | 19.7M | 18M | 3150M |
 | Time to reach soft total supply | 16 years | 8 years | 100 years |
-| Fraction of soft total supply emitted in first year alone | 13.3% | 40% | 1% |
-| When is the average coin emitted (average [soft emission](https://john-tromp.medium.com/a-case-for-using-soft-total-supply-1169a188d153) time) | 4.9 years | 1.8 years | 50 years |
+| Fraction of [soft total supply](https://john-tromp.medium.com/a-case-for-using-soft-total-supply-1169a188d153) emitted in first year alone | 13.3% | 40% | 1% |
+| Average emission time of soft total supply | 4.9 years | 1.8 years | 50 years |
 | Block time | 10 minutes | 2 minutes | 1 minute |
 | PoW complexity | simple | very complex | simple |
 | PoW verification | trivial | very expensive | trivial |
@@ -48,7 +48,7 @@ Below is a comparison of Grin/Mimblewimble with some other technologies. This is
 11. **Soft total supply (reached when yearly inflation rate <1%)** - Shows total supply points at which the soft total supply is reached.
 12. **Time to reach soft total supply** - Both Bitcoin and Monero reach the soft total supply in the first two decades while it takes 100 years for Grin to reach it.
 13. **Fraction of soft total supply emitted in first year alone** - Grin only emitted 1% of the [soft total supply](https://john-tromp.medium.com/a-case-for-using-soft-total-supply-1169a188d153) in its first year and will continue to add a percent per year until we reach 100%. This may serve as one possible measure of wealth concentration. 
-14. **When is the average coin emitted (average soft emission time)** - Calculations for Bitcoin and Monero are too complex to describe here. On the other hand, it's relatively simple to compute this for Grin and we could intuitively guess the answer is 50 years because of the linearity of the emission function.
+14. **Average emission time of soft total supply** - Calculations for Bitcoin and Monero are too complex to describe here. On the other hand, it's relatively simple to compute this for Grin and we could intuitively guess the answer is 50 years because of the linearity of the emission function.
 15. **Block time** - Not much to add here.
 16. **PoW complexity** - Grin uses Cuckoo cycle which is simpler than computing a sha256 used by Bitcoin and much simpler than RandomX which is what Monero uses.
 17. **Cheaply verifiable PoW** - The solutions of both Cuckoo cycle and sha256 are much simpler to verify compared to a solution of a RandomX PoW.
